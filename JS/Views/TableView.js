@@ -6,8 +6,9 @@
 
         function getFullHTML(goodsList, filter) { 
             var result = '',
-                pattern = new RegExp(filter, 'i');
-                for (let index = 0; index < goodsList.length; index++) {
+                pattern = new RegExp(filter, 'i'),
+                len = goodsList.length;
+                for (let index = 0; index < len; index++) {
                     const element = goodsList[index];                                  
           //  goodsList.forEach(element => {
                     if (!pattern.test(element.name)) {
@@ -33,13 +34,7 @@
             }
             imageElement.toggleClass('lnr-chevron-up');
             imageElement.toggleClass('lnr-chevron-down');
-        /*    if (imageElement.hasClass('lnr-chevron-up')) {
-                imageElement.removeClass('lnr-chevron-up');
-                imageElement.addClass('lnr-chevron-down');
-            }else{
-                imageElement.removeClass('lnr-chevron-down');
-                imageElement.addClass('lnr-chevron-up');
-            }*/
+       
             _renderFilteredTable(goodsList, filter);
         }
         

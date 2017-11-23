@@ -52,24 +52,29 @@
             </div>
 
         </div>
-        <!-- Модальное окно myModal -->
+        <!-- Модальное окно iModal -->
         <div id="iModal" class="modal">
           <div class="modal-content modal-animate-right ">
             <div class="container">
-              <div onclick="document.getElementById('iModal').style.display='none'" class="modal-close lnr lnr-trash">&times;</div>
+              <div class="modal-close lnr lnr-trash">&times;</div>
                 <form action="#" method="get">
                     <label for="inp-name"> Name:</label>
                     <input id="inp-name" class="modal-name" type="text"> * Required field
-                </form>
-                <form action="#" method="get">
+                
                     <label for="inp-count"> Count:</label>
                     <input id="inp-count" class="modal-count" type="text">
-                </form>
-                <form action="#" method="get">
+                
                     <label for="inp-price"> Price:</label>
                     <input id="inp-price" class="modal-price" type="text">
+                    <div class="clear-block ">
+                        <label for="inp-clear" class="label-clear"> Clear all fields</label>
+                        <input type="checkbox" class="modal-clear" name="clear" id="inp-clear">
+                    </div>
+                    <div>
+                        <button id="btn-modal" type="submit" class="btn btn-primary btn-md">Update</button>
+                    </div>
+                    
                 </form>
-                <button id="btn-modal" type="submit" class="btn btn-primary btn-md">Update</button>
             </div>
           </div>
         </div>
@@ -101,6 +106,7 @@
     <script src="./JS/Models/GoogsList.js"></script>
     <!-- View -->
     <script src="./JS/Views/TableView.js"></script>
+    <script src="./JS/Views/ModalView.js"></script>
     <!-- Controllers -->
     <script src="./JS/Controllers/TableController.js"></script>
     <script src="./JS/Controllers/ModalController.js"></script>

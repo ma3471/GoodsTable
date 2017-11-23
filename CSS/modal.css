@@ -18,7 +18,7 @@
     padding: 30px;
     outline: 0;
     width: 600px;
-    font: bold;
+    font-weight: bold;
 }
 /* .w3-container:after,.w3-container:before,.w3-panel:after,.w3-panel:before,.w3-row:after,.w3-row:before,.w3-row-padding:after,.w3-row-padding:before,
 .w3-cell-row:before,.w3-cell-row:after,.w3-clear:after,.w3-clear:before,.w3-bar:before,.w3-bar:after{content:"";display:table;clear:both}
@@ -57,9 +57,19 @@
     from { bottom: -300px; opacity:0 } 
     to { bottom: 0; opacity: 1 }
 }
-
+.clear-block{
+    margin-bottom: 20px;
+  /*  display: none;*/
+}
 .modal label{
     display: block;
+}
+.modal label.label-clear{
+    display: inline-block;
+}
+.modal input.modal-clear{
+    float: left;
+    margin-top: 7px;
 }
 .modal input{
    /* float: left;*/

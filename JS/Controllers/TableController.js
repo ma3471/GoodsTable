@@ -46,11 +46,16 @@
         // filter handler
         function filterHandler(e) {  
             e.preventDefault();
-            var p = document.getElementById('filter');
+            var p = document.getElementById('filter'),
+                wasEmpty = !filter;
             filter = $('#filter').val().replace(/\s/g, '');
             if (!filter) {
                 p.value = '';
             } 
+            if ((wasEmpty||(wasEmpty == '\\w'))&&!filter) {
+                return;
+            }
+            
             view.renderFilteredTable(GoodsList, filter);
         }        
     })();

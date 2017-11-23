@@ -4,6 +4,7 @@ TABLE = {
     },
     Views: {
         TableView: null,
+        ModalView: null,
     },
     Controllers: {
         TableController: null,

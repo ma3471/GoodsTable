@@ -2,7 +2,6 @@ body{
     background-color: #bbbfc0;
     font-family: Courier New, Courier, monospace;
     font-size: larger;
-    font: inherit;
 }
 thead{
     background-color: #d8dcdd;
