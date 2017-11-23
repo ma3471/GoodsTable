@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Products table</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">        
+        <!--Bootsrap taken from http://getbootstrap.com/docs/4.0/getting-started/download/ -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" 
+            integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" 
+            integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">            
+        <link href="css/main.css" rel="stylesheet">
+        <link rel="stylesheet" href="CSS/modal.css">
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="row above-table">
+                <div class="col-sm-6">
+                    <form action="#" name="search" method="get" class="form-search">
+                        <label for="filter"></label>
+                        <input type="text" name="inp" value="" id="filter" class="inp-search" placeholder="Enter product's name">
+                        <button id="btn-search" type="submit" class="btn btn-info btn-search">Search</button>
+                    </form>
+                </div>
+                <div class="col-sm-4"></div>
+                <div class="col-sm-2">
+                    <button id="btn-addnew" type="submit" class="btn btn-success btn-addnew">Add New</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">    
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <th class="th-name"><span>Name</span>
+                                <a href="#" id="sort-by-name" class="btn btn-md sort">
+                                    <span id="sort-name-image" class="lnr lnr-chevron-up"> </span>
+                                </a>
+                            </th>
+                            <th class="th-price">Price
+                                <a href="#" id="sort-by-price" class="btn btn-md sort">
+                                    <span id="sort-price-image" class="lnr lnr-chevron-down"> </span>
+                                </a>
+                            </th>
+                            <th class="th-actions">Actions</th>
+                        </thead>
+                        <tbody id="ProductTableBody">                          
+                        </tbody>
+                    </table>   
+                </div>
+            </div>
+
+        </div>
+        <!-- Модальное окно myModal -->
+        <div id="iModal" class="modal">
+          <div class="modal-content modal-animate-right ">
+            <div class="container">
+              <div onclick="document.getElementById('iModal').style.display='none'" class="modal-close lnr lnr-trash">&times;</div>
+                <form action="#" method="get">
+                    <label for="inp-name"> Name:</label>
+                    <input id="inp-name" class="modal-name" type="text"> * Required field
+                </form>
+                <form action="#" method="get">
+                    <label for="inp-count"> Count:</label>
+                    <input id="inp-count" class="modal-count" type="text">
+                </form>
+                <form action="#" method="get">
+                    <label for="inp-price"> Price:</label>
+                    <input id="inp-price" class="modal-price" type="text">
+                </form>
+                <button id="btn-modal" type="submit" class="btn btn-primary btn-md">Update</button>
+            </div>
+          </div>
+        </div>
+             
+        <!-- Table Row Pattern -->
+        <script type="text/pattern" id="TableRowPattern">
+            <tr id="ItemId">
+                <td class="td-name"><a href="#">ItemName</a> 
+                        <span class="tb-count">ItemCount</span>
+                </td>
+                <td class="tb-price">ItemPrice</td>
+                <td class="tb-actions">
+                    <button class="btn btn-primary btn-tb-edit">Edit</button>
+                    <button class="btn btn-danger btn-tb-delete">Delete</button>
+                </td>
+            </tr>
+        </script>  
+  
+        
+    </body>
+    <!-- JQuery lib taken from http://code.jquery.com/ -->
+    <script
+        src="http://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script src="./JS/main.js"></script>
+    <!-- Models -->
+    <script src="./JS/Models/GoogsList.js"></script>
+    <!-- View -->
+    <script src="./JS/Views/TableView.js"></script>
+    <!-- Controllers -->
+    <script src="./JS/Controllers/TableController.js"></script>
+    <script src="./JS/Controllers/ModalController.js"></script>
+</html>

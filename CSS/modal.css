@@ -1,0 +1,87 @@
+.modal{
+    z-index: 3;
+    display: none;
+    padding-top: 100px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow:  auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4)
+}
+.modal-content{
+    margin :auto;
+    background-color: #fff;
+    position: relative;
+    padding: 30px;
+    outline: 0;
+    width: 600px;
+    font: bold;
+}
+/* .w3-container:after,.w3-container:before,.w3-panel:after,.w3-panel:before,.w3-row:after,.w3-row:before,.w3-row-padding:after,.w3-row-padding:before,
+.w3-cell-row:before,.w3-cell-row:after,.w3-clear:after,.w3-clear:before,.w3-bar:before,.w3-bar:after{content:"";display:table;clear:both}
+.w3-col,.w3-half,.w3-third,.w3-twothird,.w3-threequarter,.w3-quarter{float:left;width:100%}*/
+
+
+.modal-animate-top{
+    position: relative;
+    animation: animatetop 0.4s
+}
+@keyframes animatetop{
+    from { top:-300px; opacity:0 } 
+    to { top:0; opacity:1 }
+}
+.modal-animate-left{
+    position: relative;
+    animation: animateleft 0.4s
+}
+@keyframes animateleft{
+    from { left:-300px; opacity:0 } 
+    to { left:0; opacity:1 }
+}
+.modal-animate-right{
+    position: relative;
+    animation: animateright 0.4s
+}
+@keyframes animateright{
+    from { right:-300px; opacity: 0 } 
+    to { right:0; opacity:1 }
+}
+.modal-animate-bottom{
+    position: relative;
+    animation: animatebottom 0.4s
+}
+@keyframes animatebottom{
+    from { bottom: -300px; opacity:0 } 
+    to { bottom: 0; opacity: 1 }
+}
+
+.modal label{
+    display: block;
+}
+.modal input{
+   /* float: left;*/
+    border-radius: 3px;
+    padding: 5px;
+    margin-right: 20px;
+    margin-left: 0px;
+    margin-top: 2px;
+    margin-bottom: 20px;
+    box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1);
+}
+.modal-name, .modal-price{
+    width: 50%;
+}
+.modal-count{
+    width: 25%;
+}
+.modal-close{
+    padding: 3px;
+    float: right;
+    border-style: solid;
+    border-radius: 4px;
+    font: bolder;
+}
+
