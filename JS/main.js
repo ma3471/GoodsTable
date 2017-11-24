@@ -7,6 +7,7 @@ TABLE = {
         ModalView: null,
     },
     Controllers: {
+        AddEditDeleteController: null,
         TableController: null,
         ModalController: null,
     }

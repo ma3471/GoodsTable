@@ -54,24 +54,24 @@
         </div>
         <!-- Модальное окно iModal -->
         <div id="iModal" class="modal">
-          <div class="modal-content modal-animate-right ">
+          <div id="iModalContent" class="modal-content modal-animate-right ">
             <div class="container">
               <div class="modal-close lnr lnr-trash">&times;</div>
                 <form action="#" method="get">
-                    <label for="inp-name"> Name:</label>
-                    <input id="inp-name" class="modal-name" type="text"> * Required field
+                    <label for="inpName"> Name:</label>
+                    <input id="inpName" class="modal-name" type="text"> * Required field
                 
-                    <label for="inp-count"> Count:</label>
-                    <input id="inp-count" class="modal-count" type="text">
+                    <label for="inpCount"> Count:</label>
+                    <input id="inpCount" class="modal-count" type="text">
                 
-                    <label for="inp-price"> Price:</label>
-                    <input id="inp-price" class="modal-price" type="text">
+                    <label for="inpPrice"> Price:</label>
+                    <input id="inpPrice" class="modal-price" type="text">
                     <div class="clear-block ">
                         <label for="inp-clear" class="label-clear"> Clear all fields</label>
                         <input type="checkbox" class="modal-clear" name="clear" id="inp-clear">
                     </div>
                     <div>
-                        <button id="btn-modal" type="submit" class="btn btn-primary btn-md">Update</button>
+                        <button id="btnModal"  type="submit" class="btn btn-primary btn-md btn-modal">Update</button>
                     </div>
                     
                 </form>
@@ -104,10 +104,12 @@
     <script src="./JS/main.js"></script>
     <!-- Models -->
     <script src="./JS/Models/GoogsList.js"></script>
+    <script src="./JS/Models/Validator.js"></script>
     <!-- View -->
     <script src="./JS/Views/TableView.js"></script>
     <script src="./JS/Views/ModalView.js"></script>
     <!-- Controllers -->
+    <script src="./JS/Controllers/AddEditDeleteController.js"></script>
     <script src="./JS/Controllers/TableController.js"></script>
     <script src="./JS/Controllers/ModalController.js"></script>
 </html>

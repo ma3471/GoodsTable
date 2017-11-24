@@ -1,21 +1,26 @@
 (function () {  
     TABLE.Views.ModalView = (function () {  
 
-        function _renderModal(goodsList, goodsId) {  
+        function _renderModal(goodsList, goodsId, toDelete) {
+            if (toDelete) {
+                $('#' + goodsId).css('background-color', 'red');
+                return;
+            }  
             if (goodsId) {
-                $('#inp-name').val(goodsList[goodsId].name);
-                $('#inp-count').val(goodsList[goodsId].count);
-                $('#inp-price').val(goodsList[goodsId].price);
+                $('#inpName').val(goodsList[goodsId].name);
+                $('#inpCount').val(goodsList[goodsId].count);
+                $('#inpPrice').val(goodsList[goodsId].price);
                 $('.clear-block').css('display', 'none');
-                $('#btn-modal').html('Update');
+                $('#btnModal').html('Update');
             }else{
                 $('.clear-block').css('display', 'block');
-                $('#btn-modal').html('  Add  ');
+                $('#btnModal').html('  Add  ');
             }
             $('#iModal').css('display', 'block');
         }
-        function _hideModal() {  
+        function _hideModal(e) {  
             $('#iModal').css('display', 'none');
+            e.stopPropagation();
         }
         return {
             renderModal: _renderModal,
