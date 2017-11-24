@@ -1,6 +1,7 @@
 TABLE = {
     Models: {
         GoodsList: null,
+        Validator: null,
     },
     Views: {
         TableView: null,

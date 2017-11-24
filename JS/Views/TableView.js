@@ -41,6 +41,7 @@
         function _renderFilteredTable(goodsList, filter) {  
             tableBody.html(getFullHTML(goodsList, filter));
         }
+
         return {
             renderFilteredTable: _renderFilteredTable,
             renderSortedTable: _renderSortedTable

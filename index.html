@@ -58,13 +58,17 @@
             <div class="container">
               <div class="modal-close lnr lnr-trash">&times;</div>
                 <form action="#" method="get">
-                    <label for="inpName"> Name:</label>
+                    <div>
+                        <label for="inpName"> Name:</label><span id="errorInName" class="error"></span>
+                    </div>           
                     <input id="inpName" class="modal-name" type="text"> * Required field
-                
-                    <label for="inpCount"> Count:</label>
+                    <div>
+                       <label for="inpCount"> Count:</label><span id="errorInCount" class="error"></span> 
+                    </div>
                     <input id="inpCount" class="modal-count" type="text">
-                
-                    <label for="inpPrice"> Price:</label>
+                    <div>
+                        <label for="inpPrice"> Price:</label><span id="errorInPrice" class="error"></span>
+                    </div>
                     <input id="inpPrice" class="modal-price" type="text">
                     <div class="clear-block ">
                         <label for="inp-clear" class="label-clear"> Clear all fields</label>
@@ -72,6 +76,10 @@
                     </div>
                     <div>
                         <button id="btnModal"  type="submit" class="btn btn-primary btn-md btn-modal">Update</button>
+                        <!-- HTML storage -->
+                        <span id="goodsId" style="display:none;"></span>
+                        <span id="currentFilter" style="display:none;"></span>
+                        <span id="currentPrice" style="display:none;"></span>
                     </div>
                     
                 </form>

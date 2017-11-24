@@ -49,6 +49,7 @@
             var p = document.getElementById('filter'),
                 wasEmpty = !filter;
             filter = $('#filter').val().replace(/\s/g, '');
+            $('#currentFilter').val(filter);
             if (!filter) {
                 p.value = '';
             } 

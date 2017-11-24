@@ -52,6 +52,10 @@
     from { bottom: -300px; opacity:0 } 
     to { bottom: 0; opacity: 1 }
 }
+.error{
+    display: inline-block;
+    color: rgb(226, 9, 9);
+}
 .clear-block{
     margin-bottom: 20px;
   /*  display: none;*/
@@ -61,7 +65,7 @@
 
 }
 .modal label{
-    display: block;
+    display: inline-block;
 }
 .modal label.label-clear{
     display: inline-block;
