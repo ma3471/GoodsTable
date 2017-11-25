@@ -16,17 +16,20 @@
             $('#btnModal').click(addEditHandler);
             $('#inpClear').click(clearClackHandler);
             $('#btnYes').click(deleteHandler);
-        //    price$.click(priceSwitchHandler);btnYes
-            price$.hover(priceComeInHandler, priceComeOutHandler);
-            price$.keypress(priceKeyPressHandler);
-            
+             
             name$.keypress(nameHandler);
             name$.hover(nameHoverHandler);
-//            count.bind('copy', function() { return false;});
+            name$.keydown(catchEnterHandler);
+            name$.focusout(nameHandler);
+            name$.change(nameHandler);
+
             count$.keypress(countHandler);
             count$.mouseleave(countLeaveHandler); 
             count$.bind('paste', function() { return false;});
- //           count.bind('cut', function() { return false;});
+
+            price$.hover(priceComeInHandler, priceComeOutHandler);
+            price$.keypress(priceKeyPressHandler);
+            price$.keydown(catchEnterHandler);
 
             function addEditHandler(e) {  
                 e.preventDefault();
@@ -55,8 +58,18 @@
                 goodsList.push({name: name$.val(), count: count$.val() * 1, price: priceStored$.val() * 1});
                 view.TableView.renderFilteredTable(goodsList, filter);
                 view.ModalView.hideModal();
+                priceEntered = false;
+                nameNotEntered = true;
             }
 
+            function deleteHandler(e) {  
+                var goodsId = $('#goodsId').val();
+                filter = $('#currentFilter').val();
+                goodsList.splice(goodsId, 1); 
+                view.TableView.renderFilteredTable(goodsList, filter);
+                view.ModalView.hideModal();
+            }
+// Field Name hadlers
             function nameHandler(e) { 
                 if (nameNotEntered) {
                     nameNotEntered = false;
@@ -85,7 +98,7 @@
                 view.ModalView.hideError('errorInName');
                 return;
             }
-
+// Field Count handlers
             function countHandler(e) {  
                 var key = String.fromCharCode(e.which),
                     error = validator.getErrorInCountIfAny(key);
@@ -100,7 +113,7 @@
             function countLeaveHandler(e) {  
                 view.ModalView.hideError('errorInCount');
             }
-
+// Field Price handlers
             function priceKeyPressHandler(e) {
                 priceEntered = true;  
                 var value = price$.val(),
@@ -132,27 +145,25 @@
                    }));
             }
 
-            function priceComeInHandler(e) {  //hover or mouseleavein
+            function priceComeInHandler(e) {  
                 if (isPriceStored$.val()) {
                     price$.val(priceStored$.val());
                 }
             } 
-
+// Clear all fields handler
             function clearClackHandler(e) { 
                 name$.val('');
                 count$.val(''); 
                 price$.val('');
                 isPriceStored$.val(false);
                 priceNotEntered = true;
-                nameNotEntered = true;
+                nameEntered = false;
             }
 
-            function deleteHandler(e) {  
-                var goodsId = $('#goodsId').val();
-                filter = $('#currentFilter').val();
-                goodsList.splice(goodsId, 1); 
-                view.TableView.renderFilteredTable(goodsList, filter);
-                view.ModalView.hideModal();
+            function catchEnterHandler(e) {  
+                if (e.keyCode === 13) {
+                    e.preventDefault();
+                }
             }
     }();
 })()

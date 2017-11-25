@@ -12,6 +12,9 @@
             return error;
         }
         function _getErrorInCountIfAny(item) {
+            if (item.length > 8) {
+                return 'Wow!Wow!Wow!...please stop typing';
+            }
             var error ='';
             if (!/^\d+$/.test(item)) {
                 error = 'Only numbers are acceptable';
@@ -19,6 +22,9 @@
             return error;
         }
         function _getErrorInPriceIfAny(item) {
+            if (item.length > 15) {
+                return 'You just... be nice. OK?';
+            }
             var error ='',
                 pattern = /^\s*\d+(\.\d{0,2})?\s*$/;
             if (!pattern.test(item)) {

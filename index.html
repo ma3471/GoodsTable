@@ -20,7 +20,7 @@
                 <div class="col-sm-6">
                     <form action="#" name="search" method="get" class="form-search">
                         <label for="filter"></label>
-                        <input type="text" name="inp" value="" id="filter" class="inp-search" placeholder="Enter product's name">
+                        <input type="text" name="inp" value="" id="filter" class="inp-search" placeholder="Enter product's name" maxlength="25">
                         <button id="btn-search" type="submit" class="btn btn-info btn-search">Search</button>
                     </form>
                 </div>
@@ -61,18 +61,18 @@
                     <div>
                         <label for="inpName"> Name:</label><span id="errorInName" class="error"></span>
                     </div>           
-                    <input id="inpName" class="modal-name" type="text"> * Required field
+                    <input id="inpName" class="modal-name" type="text" maxlength="19"> * Required field
                     <div>
                        <label for="inpCount"> Count:</label><span id="errorInCount" class="error"></span> 
                     </div>
-                    <input id="inpCount" class="modal-count" type="text">
+                    <input id="inpCount" class="modal-count" type="text" maxlength="9">
                     <div>
                         <label for="inpPrice"> Price:</label><span id="errorInPrice" class="error"></span>
                     </div>
-                    <input id="inpPrice" class="modal-price" type="text">
+                    <input id="inpPrice" class="modal-price" type="text" placeholder="9999.99" maxlength="18">
                     <div class="clear-block ">
-                        <label for="inpClear" class="label-clear"> Clear all fields</label>
-                        <input id="inpClear" type="checkbox" class="modal-clear" name="clear" >
+                     <!--   <label for="inpClear" class=""> Clear all fields</label>-->
+                        <input id="inpClear" type="button" class="btn modal-clear" name="clear" value="Clear all fields">
                     </div>
                     <div>
                         <button id="btnModal"  type="submit" class="btn btn-primary btn-md btn-modal">Update</button>
