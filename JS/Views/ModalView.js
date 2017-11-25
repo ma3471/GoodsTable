@@ -19,6 +19,7 @@
                 // fill storage
                 $('#goodsId').val(goodsId);
                 $('#currentPrice').val(goodsList[goodsId].price);
+                $('#isPriceStored').val(true);
             }else{
                 $('.clear-block').css('display', 'block');
                 $('#btnModal').html('  Add  ');
