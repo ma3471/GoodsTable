@@ -4,6 +4,8 @@
         function _renderModal(goodsList, goodsId, toDelete) {
             if (toDelete) {
                 $('#' + goodsId).css('background-color', 'red');
+                $('#iModalDelete').css('display', 'block');
+                $('#goodsId').val(goodsId);
                 return;
             }  
             if (goodsId) {
@@ -28,6 +30,7 @@
         }
         function _hideModal(e) {  
             $('#iModal').css('display', 'none');
+            $('#iModalDelete').css('display', 'none');
             ['errorInName', 'errorInCount', 'errorInPrice'].forEach(element => { _hideError(element) });
             if (e) {
                 e.stopPropagation();
@@ -36,7 +39,8 @@
         function _showError(errorText, address) { 
             var elem = $('#' + address);
             elem.text(errorText);
-           // elem.css('display', 'inline-block');
+            var s = '#' + address + ' ~ input';
+            $(s).css('border', '3px solid red');
         }
         function _hideError(address) { 
             var elem = $('#' + address).text('');

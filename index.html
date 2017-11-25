@@ -54,9 +54,9 @@
         </div>
         <!-- Модальное окно iModal -->
         <div id="iModal" class="modal">
-          <div id="iModalContent" class="modal-content modal-animate-right ">
-            <div class="container">
-              <div class="modal-close lnr lnr-trash">&times;</div>
+            <div id="iModalContent" class="modal-content modal-animate-left ">
+                <div class="container">
+                <div class="modal-close lnr lnr-trash">&times;</div>
                 <form action="#" method="get">
                     <div>
                         <label for="inpName"> Name:</label><span id="errorInName" class="error"></span>
@@ -71,8 +71,8 @@
                     </div>
                     <input id="inpPrice" class="modal-price" type="text">
                     <div class="clear-block ">
-                        <label for="inp-clear" class="label-clear"> Clear all fields</label>
-                        <input type="checkbox" class="modal-clear" name="clear" id="inp-clear">
+                        <label for="inpClear" class="label-clear"> Clear all fields</label>
+                        <input id="inpClear" type="checkbox" class="modal-clear" name="clear" >
                     </div>
                     <div>
                         <button id="btnModal"  type="submit" class="btn btn-primary btn-md btn-modal">Update</button>
@@ -82,12 +82,24 @@
                         <span id="currentPrice" style="display:none;"></span>
                         <span id="isPriceStored" style="display:none;"></span>
                     </div>
-                    
                 </form>
+                </div>
             </div>
-          </div>
         </div>
-             
+        <!-- Delete confirmation modal -->
+        <div id="iModalDelete" class="modal-delete">
+            <div id="iModalContentDelete" class="modal-content-delete modal-animate-right ">
+                <div class="container">
+               
+                <header>Are you sure? </header>
+                <p>Are you sure you want to perform this action ?</p>
+                <button id="btnYes"  type="submit" class="btn btn-danger btn-md btn-modal">Yes</button>
+                <button id="btnNo"  type="submit" class="btn btn-primary btn-md btn-modal">No</button>
+                <!-- HTML storage -->
+                <span id="deleteId" style="display:none;"></span>
+                </div>
+            </div>
+        </div>     
         <!-- Table Row Pattern -->
         <script type="text/pattern" id="TableRowPattern">
             <tr id="ItemId">

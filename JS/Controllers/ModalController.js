@@ -8,6 +8,7 @@
         $('#ProductTableBody').click(popUpModal);
         $('#btn-addnew').click(popUpModal);
         $('.modal-close').click(view.hideModal);
+        $('#btnNo').click(view.hideModal);
         
         function popUpModal(e) {  
             e.preventDefault();

@@ -1,4 +1,4 @@
-.modal{
+.modal, .modal-delete{
     z-index: 3;
     display: none;
     padding-top: 100px;
@@ -11,7 +11,7 @@
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4)
 }
-.modal-content{
+.modal-content, .modal-content-delete{
     margin :auto;
     background-color: #fff;
     position: relative;
@@ -19,6 +19,12 @@
     outline: 0;
     width: 600px;
     font-weight: bold;
+}
+.modal-delete{
+   /* background-color: rgb(248, 245, 245); */
+}
+.modal-content-delete{
+    width: 300px;
 }
 .modal-animate-top{
     position: relative;
@@ -52,6 +58,9 @@
     from { bottom: -300px; opacity:0 } 
     to { bottom: 0; opacity: 1 }
 }
+/*.errorInPrice > input{
+
+}*/
 .error{
     display: inline-block;
     color: rgb(226, 9, 9);
