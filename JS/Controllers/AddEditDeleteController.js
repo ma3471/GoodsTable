@@ -10,7 +10,7 @@
             price$ = $('#inpPrice'),
             priceStored$ = $('#currentPrice'),
             isPriceStored$ = $('#isPriceStored'),
-            priceEntered = false,
+            priceNotEntered = true,
             nameNotEntered = true;
              
             $('#btnModal').click(addEditHandler);
@@ -19,9 +19,9 @@
              
             name$.keypress(nameHandler);
             name$.hover(nameHoverHandler);
-            name$.keydown(catchEnterHandler);
-            name$.focusout(nameHandler);
+            name$.focusout(nameHoverHandler);
             name$.change(nameHandler);
+            name$.keydown(catchEnterHandler);
 
             count$.keypress(countHandler);
             count$.mouseleave(countLeaveHandler); 
@@ -58,7 +58,7 @@
                 goodsList.push({name: name$.val(), count: count$.val() * 1, price: priceStored$.val() * 1});
                 view.TableView.renderFilteredTable(goodsList, filter);
                 view.ModalView.hideModal();
-                priceEntered = false;
+                priceNotEntered = true;
                 nameNotEntered = true;
             }
 
@@ -72,7 +72,6 @@
 // Field Name hadlers
             function nameHandler(e) { 
                 if (nameNotEntered) {
-                    nameNotEntered = false;
                     return true;
                 } 
                 var errorInName = validator.getErrorInNameIfAny(name$.val());    
@@ -115,7 +114,10 @@
             }
 // Field Price handlers
             function priceKeyPressHandler(e) {
-                priceEntered = true;  
+              //  priceNotEntered = false;
+            /*    if (priceNotEntered) {
+                    return;
+                }  */
                 var value = price$.val(),
                     errorInPrice = validator.getErrorInPriceIfAny(value);
                 if (errorInPrice) {
@@ -129,9 +131,16 @@
             }
 
             function priceComeOutHandler(e) { 
+                if (priceNotEntered) {
+                    price$.val((price$.val() * 1).toLocaleString("en", {
+                        style: "currency",
+                        currency: "USD"
+                       }));
+                    return;
+                }
                 var value = price$.val(),
                     errorInPrice = validator.getErrorInPriceIfAny(value);
-                if (errorInPrice && priceEntered) {
+                if (errorInPrice) {
                     view.ModalView.showError(errorInPrice, 'errorInPrice');
                     isPriceStored$.val(false);
                     return;
@@ -154,10 +163,10 @@
             function clearClackHandler(e) { 
                 name$.val('');
                 count$.val(''); 
-                price$.val('');
+                price$.val('0');
                 isPriceStored$.val(false);
+                nameNotEntered = true;
                 priceNotEntered = true;
-                nameEntered = false;
             }
 
             function catchEnterHandler(e) {  
@@ -165,5 +174,14 @@
                     e.preventDefault();
                 }
             }
+            function _initializer() {  
+                nameNotEntered = true;
+                priceNotEntered = true;
+                price$.click(function () { priceNotEntered = false; price$.unbind('click');  });
+                name$.click(function () { nameNotEntered = false; name$.unbind('click')  });
+            }
+        return {
+            initializer: _initializer
+        }
     }();
 })()
