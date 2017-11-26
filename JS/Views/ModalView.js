@@ -40,18 +40,17 @@
                 e.stopPropagation();
             }           
         }
+
         function _showError(errorText, address) { 
-            var elem = $('#' + address);
-            elem.text(errorText);
-            var s = '#' + address + ' *';
-            $(s).css('border', '3px solid red');
-         //   $('#inpPrice').css('border', '3px solid red');
+            $('#' + address).text(errorText);
+            $('#inp' + address.slice(7)).css('border', '3px solid red');
         }
+
         function _hideError(address) { 
-            var elem = $('#' + address).text('');
-            elem.text('');
-           // elem.css('display', 'none');
+            $('#' + address).text('');
+            $('#inp' + address.slice(7)).css('border', 'inherit');
         }
+        
         return {
             renderModal: _renderModal,
             hideModal: _hideModal,

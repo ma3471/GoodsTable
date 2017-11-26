@@ -17,18 +17,18 @@
             $('#inpClear').click(clearClackHandler);
             $('#btnYes').click(deleteHandler);
              
-            name$.keypress(nameHandler);
+            name$.keyup(nameHandler);
             name$.hover(nameHoverHandler);
             name$.focusout(nameHoverHandler);
             name$.change(nameHandler);
             name$.keydown(catchEnterHandler);
 
-            count$.keypress(countHandler);
+            count$.keypress(countHandler);//keypress
             count$.mouseleave(countLeaveHandler); 
             count$.bind('paste', function() { return false;});
 
             price$.hover(priceComeInHandler, priceComeOutHandler);
-            price$.keypress(priceKeyPressHandler);
+            price$.keyup(priceKeyPressHandler);
             price$.keydown(catchEnterHandler);
 
             function addEditHandler(e) {  
@@ -163,6 +163,7 @@
                 name$.val('');
                 count$.val(''); 
                 price$.val('');
+                isPriceStored$.val(false);
                 view.ModalView.hideModal();
                 view.ModalView.renderModal();
                 _initializer();        

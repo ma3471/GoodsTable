@@ -22,6 +22,9 @@
             return error;
         }
         function _getErrorInPriceIfAny(item) {
+            if (item == '') {
+                return '';
+            }
             if (item.length > 15) {
                 return 'You just... be nice. OK?';
             }
