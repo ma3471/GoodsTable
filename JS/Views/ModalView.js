@@ -45,6 +45,7 @@
             elem.text(errorText);
             var s = '#' + address + ' *';
             $(s).css('border', '3px solid red');
+         //   $('#inpPrice').css('border', '3px solid red');
         }
         function _hideError(address) { 
             var elem = $('#' + address).text('');

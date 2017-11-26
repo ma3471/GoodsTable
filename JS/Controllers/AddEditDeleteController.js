@@ -114,10 +114,6 @@
             }
 // Field Price handlers
             function priceKeyPressHandler(e) {
-              //  priceNotEntered = false;
-            /*    if (priceNotEntered) {
-                    return;
-                }  */
                 var value = price$.val(),
                     errorInPrice = validator.getErrorInPriceIfAny(value);
                 if (errorInPrice) {
@@ -131,7 +127,10 @@
             }
 
             function priceComeOutHandler(e) { 
+                price$.blur();
                 if (priceNotEntered) {
+                    priceStored$.val(price$.val());
+                    isPriceStored$.val(true);
                     price$.val((price$.val() * 1).toLocaleString("en", {
                         style: "currency",
                         currency: "USD"
@@ -163,10 +162,10 @@
             function clearClackHandler(e) { 
                 name$.val('');
                 count$.val(''); 
-                price$.val('0');
-                isPriceStored$.val(false);
-                nameNotEntered = true;
-                priceNotEntered = true;
+                price$.val('');
+                view.ModalView.hideModal();
+                view.ModalView.renderModal();
+                _initializer();        
             }
 
             function catchEnterHandler(e) {  
