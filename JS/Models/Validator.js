@@ -26,7 +26,7 @@
                 return '';
             }
             if (item.length > 15) {
-                return 'You just... be nice. OK? (delete ' + item.length - 15 + ' digits';
+                return 'You just... be nice. OK? (delete ' + (item.length - 15) + ' digits';
             }
             var error ='',
                 pattern = /^\s*\d+(\.\d{0,2})?\s*$/;
