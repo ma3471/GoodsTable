@@ -15,6 +15,7 @@
 
         // eHandlers
         $('#btn-search').click(filterHandler);
+        $('#filter').keyup(filterHandler);
         $('#sort-by-name').click(sortHandler);
         $('#sort-by-price').click(sortHandler);
         // Sort handler
