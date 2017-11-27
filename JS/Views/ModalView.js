@@ -20,10 +20,7 @@
                 
                 $('.clear-block').css('display', 'none');
                 $('#btnModal').html('Update');
-                // fill storage
-                $('#goodsId').val(goodsId);
-                $('#currentPrice').val(goodsList[goodsId].price);
-                $('#isPriceStored').val(true);
+    
             }else{
                 // Add modal pop up
                 $('.clear-block').css('display', 'block');
@@ -31,13 +28,14 @@
             }
             $('#iModal').css('display', 'block');
         }
-        
-        function _hideModal(e) {  
+
+        function _hideModal(goodsId) {  
             $('#iModal').css('display', 'none');
             $('#iModalDelete').css('display', 'none');
             ['errorInName', 'errorInCount', 'errorInPrice'].forEach(element => { _hideError(element) });
-            if (e) {
-                e.stopPropagation();
+            if (goodsId) {
+                $('#' + goodsId).css('background-color', 'inherit');
+               // e.stopPropagation();
             }           
         }
 

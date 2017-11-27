@@ -8,10 +8,11 @@
             name$ = $('#inpName'),
             count$ = $('#inpCount'),
             price$ = $('#inpPrice'),
-            priceStored$ = $('#currentPrice'),
-            isPriceStored$ = $('#isPriceStored'),
+            goodsId,
+            priceStored,
+            isPriceStored,
             priceTrigger = true,
-//            priceNotEntered = true,
+            isCursorIn = true,
             nameNotEntered = true;
              
             $('#btnModal').click(addEditHandler);
@@ -28,8 +29,8 @@
             count$.bind('paste', function() { return false;});
 
             price$.hover(priceComeInHandler, priceComeOutHandler);
-            price$.focusin(priceComeInHandler);
-            price$.blur(priceComeOutHandler);
+            price$.focusin(function (e) { isCursorIn = true;  priceComeInHandler(e) });
+            price$.blur(function (e) { isCursorIn = false;  priceComeOutHandler(e) });
             price$.keyup(priceKeyPressHandler);
             price$.keydown(catchEnterHandler);
 
@@ -37,7 +38,7 @@
                 e.preventDefault();
                 var errorInName = validator.getErrorInNameIfAny(name$.val()),
                     errorInPrice;
-                if (isPriceStored$.val()) {
+                if (isPriceStored) {
                     errorInPrice = false;
                 }else{
                     errorInPrice = validator.getErrorInPriceIfAny(price$.val());
@@ -51,27 +52,25 @@
                 if (errorInName || errorInPrice ) { 
                     return;
                 }
-                // Get values from HTML storage
-                var goodsId = $('#goodsId').val();
-                    filter = $('#currentFilter').val();
                 if (/update/i.test(e.target.textContent.replace(/\s/g, ''))) {
                     goodsList.splice(goodsId, 1);  
                 }
-                goodsList.push({name: name$.val(), count: count$.val() * 1, price: priceStored$.val() * 1});
+                goodsList.push({name: name$.val(), count: count$.val() * 1, price: priceStored * 1});
+                goodBye();
+            }
+
+            function deleteHandler(e) {  
+                goodsList.splice(goodsId, 1); 
+                goodBye();
+            }
+
+            function goodBye() { 
+                filter = $('#currentFilter').val(); 
                 view.TableView.renderFilteredTable(goodsList, filter);
                 view.ModalView.hideModal();
                 $('#main').unbind('keydown');
             }
 
-            function deleteHandler(e) {  
-                var goodsId = $('#goodsId').val();
-                filter = $('#currentFilter').val();
-                goodsList.splice(goodsId, 1); 
-                view.TableView.renderFilteredTable(goodsList, filter);
-                view.ModalView.hideModal();
-                $('#main').unbind('keydown');
-            }
-            
 // Field Name hadler
             function nameHandler(e) { 
                 if (nameNotEntered) {
@@ -112,16 +111,16 @@
                     errorInPrice = validator.getErrorInPriceIfAny(value);
                 if (errorInPrice) {
                     view.ModalView.showError(errorInPrice, 'errorInPrice');
-                    isPriceStored$.val(false);
+                    isPriceStored = false;
                     return;
                 }
                 view.ModalView.hideError('errorInPrice');
-                isPriceStored$.val(true);
-                priceStored$.val(value);
+                isPriceStored = true;
+                priceStored = value;
             }
 
             function priceComeOutHandler(e) { 
-                if (priceTrigger) { 
+                if (priceTrigger || isCursorIn) { 
                     return;
                 }
                 priceTrigger = true;
@@ -130,12 +129,12 @@
                     errorInPrice = validator.getErrorInPriceIfAny(value);
                 if (errorInPrice) {
                     view.ModalView.showError(errorInPrice, 'errorInPrice');
-                    isPriceStored$.val(false);
+                    isPriceStored = false;
                     return;
                 }
                 view.ModalView.hideError('errorInPrice');
-                priceStored$.val(value);
-                isPriceStored$.val(true);
+                priceStored = value;
+                isPriceStored = true;
                 price$.val((value * 1).toLocaleString("en", {
                     style: "currency",
                     currency: "USD"
@@ -147,8 +146,8 @@
                     return;
                 }  
                 priceTrigger = false;
-                if (isPriceStored$.val()) {
-                    price$.val(priceStored$.val());
+                if (isPriceStored) {
+                    price$.val(priceStored);
                 }
             } 
 // Clear all fields handler
@@ -156,7 +155,7 @@
                 name$.val('');
                 count$.val(''); 
                 price$.val('');
-                isPriceStored$.val(false);
+                isPriceStored = false;
                 view.ModalView.hideModal();
                 view.ModalView.renderModal();
                 _initializer();        
@@ -168,8 +167,14 @@
                 }
             }
 
-            function _initializer() { 
+            function _initializer(Id) { 
+                if (Id) {
+                    goodsId = Id;
+                    priceStored = goodsList[goodsId].price;
+                    isPriceStored = true;
+                }
                 priceTrigger = true; 
+                isCursorIn = false;
                 nameNotEntered = true;
                 name$.click(function () { nameNotEntered = false; name$.unbind('click')  });
                 $('#main').keydown(catchEnterHandler);
