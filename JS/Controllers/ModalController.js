@@ -7,9 +7,9 @@
         var GoodsList = model.getGoodsList();
         // Handlers
         $('#ProductTableBody').click(popUpModal);
-        $('#btn-addnew').click(popUpModal);
-        $('.modal-close').click(view.hideModal);
-        $('#btnNo').click(view.hideModal);
+        $('#btnAddnew').click(popUpModal);
+        $('#modalClose').click(function (e) {  $('#main').unbind('keydown'); view.hideModal();} );
+        $('#btnNo').click(function (e) {  $('#main').unbind('keydown'); view.hideModal();});
         
         function popUpModal(e) {  
             e.preventDefault();
@@ -20,11 +20,12 @@
             if (/edit/i.test(e.target.textContent.replace(/\s/g, ''))) {   
                var goodsId = e.target.parentNode.parentNode.id;
                view.renderModal(GoodsList, goodsId);
-               controller.initializer();
+               controller.initializer(goodsId);//goodsId
             }  
             if (/delete/i.test(e.target.textContent.replace(/\s/g, ''))) {   
                 var goodsId = e.target.parentNode.parentNode.id;
                 view.renderModal(GoodsList, goodsId, true);
+                controller.initializer(goodsId);
              }           
         }
     }();

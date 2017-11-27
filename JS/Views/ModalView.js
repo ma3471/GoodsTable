@@ -28,10 +28,10 @@
                 // Add modal pop up
                 $('.clear-block').css('display', 'block');
                 $('#btnModal').html('  Add  ');
-               // $('#isPriceStored').val(false);
             }
             $('#iModal').css('display', 'block');
         }
+        
         function _hideModal(e) {  
             $('#iModal').css('display', 'none');
             $('#iModalDelete').css('display', 'none');
@@ -43,7 +43,7 @@
 
         function _showError(errorText, address) { 
             $('#' + address).text(errorText);
-            $('#inp' + address.slice(7)).css('border', '3px solid red');
+            $('#inp' + address.slice(7)).css('border', '2px solid red');
         }
 
         function _hideError(address) { 

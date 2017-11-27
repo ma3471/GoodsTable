@@ -22,7 +22,7 @@
             return error;
         }
         function _getErrorInPriceIfAny(item) {
-            if (item == '') {
+            if (item.replace(/\s/g, '') == '') {
                 return '';
             }
             if (item.length > 15) {

@@ -10,7 +10,8 @@
             price$ = $('#inpPrice'),
             priceStored$ = $('#currentPrice'),
             isPriceStored$ = $('#isPriceStored'),
-            priceNotEntered = true,
+            priceTrigger = true,
+//            priceNotEntered = true,
             nameNotEntered = true;
              
             $('#btnModal').click(addEditHandler);
@@ -18,16 +19,17 @@
             $('#btnYes').click(deleteHandler);
              
             name$.keyup(nameHandler);
-            name$.hover(nameHoverHandler);
-            name$.focusout(nameHoverHandler);
-            name$.change(nameHandler);
+            name$.hover(nameHandler);
+            name$.focusout(nameHandler);
             name$.keydown(catchEnterHandler);
 
-            count$.keypress(countHandler);//keypress
+            count$.keypress(countHandler);
             count$.mouseleave(countLeaveHandler); 
             count$.bind('paste', function() { return false;});
 
             price$.hover(priceComeInHandler, priceComeOutHandler);
+            price$.focusin(priceComeInHandler);
+            price$.blur(priceComeOutHandler);
             price$.keyup(priceKeyPressHandler);
             price$.keydown(catchEnterHandler);
 
@@ -46,7 +48,7 @@
                 if (errorInPrice) {
                     view.ModalView.showError(errorInPrice, 'errorInPrice');
                 }
-                if (errorInName || errorInPrice ) { //|| errorInCount
+                if (errorInName || errorInPrice ) { 
                     return;
                 }
                 // Get values from HTML storage
@@ -58,8 +60,7 @@
                 goodsList.push({name: name$.val(), count: count$.val() * 1, price: priceStored$.val() * 1});
                 view.TableView.renderFilteredTable(goodsList, filter);
                 view.ModalView.hideModal();
-                priceNotEntered = true;
-                nameNotEntered = true;
+                $('#main').unbind('keydown');
             }
 
             function deleteHandler(e) {  
@@ -68,8 +69,10 @@
                 goodsList.splice(goodsId, 1); 
                 view.TableView.renderFilteredTable(goodsList, filter);
                 view.ModalView.hideModal();
+                $('#main').unbind('keydown');
             }
-// Field Name hadlers
+            
+// Field Name hadler
             function nameHandler(e) { 
                 if (nameNotEntered) {
                     return true;
@@ -84,24 +87,14 @@
                 return true;
             }
 
-            function nameHoverHandler(e) { 
-                if (nameNotEntered) {
-                        return;
-                    } 
-                var errorInName = validator.getErrorInNameIfAny(name$.val());
-
-                if (errorInName) {
-                    view.ModalView.showError(errorInName, 'errorInName');
-                    return;
-                }
-                view.ModalView.hideError('errorInName');
-                return;
-            }
 // Field Count handlers
             function countHandler(e) {  
+                if (e.which === 13) {
+                    return false;
+                }
                 var key = String.fromCharCode(e.which),
                     error = validator.getErrorInCountIfAny(key);
-                if (error) {                 ///\d/.test(key)
+                if (error) {               
                     view.ModalView.showError(error, 'errorInCount');
                     return false;
                 }
@@ -112,6 +105,7 @@
             function countLeaveHandler(e) {  
                 view.ModalView.hideError('errorInCount');
             }
+
 // Field Price handlers
             function priceKeyPressHandler(e) {
                 var value = price$.val(),
@@ -127,16 +121,11 @@
             }
 
             function priceComeOutHandler(e) { 
-                price$.blur();
-                if (priceNotEntered) {
-                    priceStored$.val(price$.val());
-                    isPriceStored$.val(true);
-                    price$.val((price$.val() * 1).toLocaleString("en", {
-                        style: "currency",
-                        currency: "USD"
-                       }));
+                if (priceTrigger) { 
                     return;
                 }
+                priceTrigger = true;
+    
                 var value = price$.val(),
                     errorInPrice = validator.getErrorInPriceIfAny(value);
                 if (errorInPrice) {
@@ -153,7 +142,11 @@
                    }));
             }
 
-            function priceComeInHandler(e) {  
+            function priceComeInHandler(e) {
+                if (!priceTrigger) {   
+                    return;
+                }  
+                priceTrigger = false;
                 if (isPriceStored$.val()) {
                     price$.val(priceStored$.val());
                 }
@@ -174,11 +167,12 @@
                     e.preventDefault();
                 }
             }
-            function _initializer() {  
+
+            function _initializer() { 
+                priceTrigger = true; 
                 nameNotEntered = true;
-                priceNotEntered = true;
-                price$.click(function () { priceNotEntered = false; price$.unbind('click');  });
                 name$.click(function () { nameNotEntered = false; name$.unbind('click')  });
+                $('#main').keydown(catchEnterHandler);
             }
         return {
             initializer: _initializer

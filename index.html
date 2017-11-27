@@ -15,7 +15,7 @@
 
     </head>
     <body>
-        <div class="container">
+        <div id="main" class="container">
             <div class="row above-table">
                 <div class="col-sm-6">
                     <form action="#" name="search" method="get" class="form-search">
@@ -26,7 +26,7 @@
                 </div>
                 <div class="col-sm-4"></div>
                 <div class="col-sm-2">
-                    <button id="btn-addnew" type="submit" class="btn btn-success btn-addnew">Add New</button>
+                    <button id="btnAddnew" type="submit" class="btn btn-success btn-addnew">Add New</button>
                 </div>
             </div>
             <div class="row">
@@ -50,13 +50,12 @@
                     </table>   
                 </div>
             </div>
-
         </div>
         <!-- Модальное окно iModal -->
         <div id="iModal" class="modal">
             <div id="iModalContent" class="modal-content modal-animate-left ">
                 <div class="container">
-                <div class="modal-close lnr lnr-trash">&times;</div>
+                <div id="modalClose" class="modal-close lnr lnr-trash">&times;</div>
                 <form action="#" method="get">
                     <div>
                         <label for="inpName"> Name:</label><span id="errorInName" class="error"></span>
