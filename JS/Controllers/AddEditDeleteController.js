@@ -55,7 +55,8 @@
                 if (/update/i.test(e.target.textContent.replace(/\s/g, ''))) {
                     goodsList.splice(goodsId, 1);  
                 }
-                goodsList.push({name: name$.val(), count: count$.val() * 1, price: priceStored * 1});
+                goodsList.splice(goodsList.length, 0, {name: name$.val() + '', count: count$.val() * 1, price: priceStored * 1});
+                
                 goodBye();
             }
 
