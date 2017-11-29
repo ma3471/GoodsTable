@@ -6,7 +6,6 @@
                 // Delete confirmation pop up
                 $('#' + goodsId).css('background-color', 'red');
                 $('#iModalDelete').css('display', 'block');
-                $('#goodsId').val(goodsId);
                 return;
             }  
             if (goodsId) {
@@ -18,12 +17,12 @@
                     currency: "USD"
                    }));
                 
-                $('.clear-block').css('display', 'none');
+                $('#inpClear').css('display', 'none');
                 $('#btnModal').html('Update');
     
             }else{
                 // Add modal pop up
-                $('.clear-block').css('display', 'block');
+                $('#inpClear').css('display', 'block');
                 $('#btnModal').html('  Add  ');
             }
             $('#iModal').css('display', 'block');
@@ -35,18 +34,17 @@
             ['errorInName', 'errorInCount', 'errorInPrice'].forEach(element => { _hideError(element) });
             if (goodsId) {
                 $('#' + goodsId).css('background-color', 'inherit');
-               // e.stopPropagation();
             }           
         }
 
         function _showError(errorText, address) { 
             $('#' + address).text(errorText);
-            $('#inp' + address.slice(7)).css('border', '2px solid red');
+            $('#' + address + ' + input').css('border', '2px solid red');
         }
 
         function _hideError(address) { 
             $('#' + address).text('');
-            $('#inp' + address.slice(7)).css('border', 'inherit');
+            $('#' + address + ' + input').css('border', 'inherit');
         }
         
         return {

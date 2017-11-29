@@ -16,11 +16,11 @@
     </head>
     <body>
         <div id="main" class="container">
-            <div class="row above-table">
+            <div class="row above-table sticky">
                 <div class="col-sm-6">
                     <form action="#" name="search" method="get" class="form-search">
                         <label for="filter"></label>
-                        <input type="text" name="inp" value="" id="filter" class="inp-search" placeholder="Enter product's name" maxlength="25">
+                        <input type="text" name="inp" value="" id="filter" class="inp-search" placeholder="Enter product's name" maxlength="25" autocomplete="off">
                         <button id="btn-search" type="submit" class="btn btn-info btn-search">Search</button>
                     </form>
                 </div>
@@ -31,8 +31,8 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">    
-                    <table class="table table-bordered table-hover">
-                        <thead>
+                    <table class="table table-bordered table-hover .table-responsive">
+                        <thead class="sticky-thead">
                             <th class="th-name"><span>Name</span>
                                 <a href="#" id="sort-by-name" class="btn btn-md sort">
                                     <span id="sort-name-image" class="lnr lnr-chevron-up"> </span>
@@ -57,28 +57,18 @@
                 <div class="container">
                 <div id="modalClose" class="modal-close lnr lnr-trash">&times;</div>
                 <form action="#" method="get">
-                    <div>
-                        <label for="inpName"> Name:</label><span id="errorInName" class="error"></span>
-                    </div>           
-                    <input id="inpName" class="modal-name" type="text" maxlength="19"> * Required field
-                    <div>
-                       <label for="inpCount"> Count:</label><span id="errorInCount" class="error"></span> 
-                    </div>
-                    <input id="inpCount" class="modal-count" type="text" maxlength="9">
-                    <div>
-                        <label for="inpPrice"> Price:</label><span id="errorInPrice" class="error"></span>
-                    </div>
-                    <input id="inpPrice" class="modal-price" type="text" placeholder="9999.99" maxlength="18">
-                    <div class="clear-block ">
-                        <input id="inpClear" type="button" class="btn modal-clear" name="clear" value="Clear all fields">
-                    </div>
+                    <label for="inpName"> Name:</label><span id="errorInName" class="error"></span>          
+                    <input id="inpName" class="modal-name" type="text" maxlength="19" autocomplete="off"><span class="note"> * Required field</span>
+                    <label for="inpCount"> Count:</label><span id="errorInCount" class="error"></span> 
+                    <input id="inpCount" class="modal-count" type="text" maxlength="9" autocomplete="off">
+                    <label for="inpPrice"> Price:</label><span id="errorInPrice" class="error"></span>
+                    <input id="inpPrice" class="modal-price" type="text" placeholder="9999.99" maxlength="18" autocomplete="off">
+                    <input id="inpClear" type="button" class="btn modal-clear" name="clear" value="Clear all fields">
                     <div>
                         <button id="btnModal"  type="submit" class="btn btn-primary btn-md btn-modal">Update</button>
                         <!-- HTML storage -->
-                        <span id="goodsId" style="display:none;"></span>
                         <span id="currentFilter" style="display:none;"></span>
-                        <span id="currentPrice" style="display:none;"></span>
-                        <span id="isPriceStored" style="display:none;"></span>
+                        <span id="currentFilterX" style="display:none;"></span>
                     </div>
                 </form>
                 </div>

@@ -20,9 +20,6 @@
     width: 600px;
     font-weight: bold;
 }
-.modal-delete{
-   /* background-color: rgb(248, 245, 245); */
-}
 .modal-content-delete{
     width: 400px;
     border-radius: 15px;
@@ -59,12 +56,8 @@
     from { bottom: -300px; opacity:0 } 
     to { bottom: 0; opacity: 1 }
 }
-/*.errorInPrice > input{
-
-}*/
 .modal-content-delete{
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 15px 20px 16px 9px rgba(206, 6, 6, 0.22);
-    
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 15px 20px 16px 9px rgba(206, 6, 6, 0.22);    
 }
 .error{
     display: inline-block;
@@ -72,11 +65,9 @@
 }
 .clear-block{
     margin-bottom: 20px;
-  /*  display: none;*/
 }
 .btn-modal{
     width: 100px;
-
 }
 .confirme-header{
     border-bottom-color: rgb(226, 9, 9);
@@ -89,31 +80,10 @@
 .btn-no{
     float: right;
 }
-.modal label{
-    display: inline-block;
-}
-.modal label.label-clear{
-    display: inline-block;
-}
-.modal input.modal-clear{
-    border-color:  #e79c99;
-    background-color: #f1206d;
-    color: #c3e8e2;
-    float: left;
-    margin-top: 7px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
-.modal input{
-    border-radius: 3px;
-    padding: 5px;
-    margin-right: 20px;
-    margin-left: 0px;
-    margin-top: 2px;
-    margin-bottom: 20px;
-    background-color: rgb(151, 247, 127);
-    box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1);
+.note{
+    position: absolute;
+    top: 78px;
+    left: 52%;
 }
 .modal-name, .modal-price{
     width: 50%;
@@ -127,5 +97,26 @@
     border-style: solid;
     border-radius: 4px;
     font-size: bolder;
+}
+.modal input{
+    display: block;
+    border-radius: 3px;
+    padding: 5px;
+    margin-right: 20px;
+    margin-left: 0px;
+    margin-top: 2px;
+    margin-bottom: 20px;
+    background-color: rgb(151, 247, 127);
+    box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1);
+}
+.modal input.modal-clear{
+    border-color:  #e79c99;
+    background-color: #f1206d;
+    color: #c3e8e2;
+    float: left;
+    margin-top: 7px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 

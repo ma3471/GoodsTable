@@ -4,19 +4,19 @@
         var patternTableRowHTML = $('#TableRowPattern').html(),
             tableBody = $('#ProductTableBody');
 
-        function getFullHTML(goodsList, filter) { 
+        function getFullHTML(goodsList, filter, whatHighliht) { 
             var result = '',
                 pattern = new RegExp(filter, 'i'),
+                patternX = new RegExp(whatHighliht, 'ig'),
                 len = goodsList.length;
                 for (let index = 0; index < len; index++) {
                     const element = goodsList[index];                                  
-          //  goodsList.forEach(element => {
                     if (!pattern.test(element.name)) {
                         continue;
                     }
                     result = result + patternTableRowHTML
                     .replace(/ItemId/, index)
-                    .replace(/ItemName/, element.name)
+                    .replace(/ItemName/, element.name.replace(patternX, '<i>'+ whatHighliht.toUpperCase() + '</i>'))
                     .replace(/ItemCount/, element.count)
                     .replace(/ItemPrice/, element.price.toLocaleString("en", {
                      style: "currency",
@@ -25,7 +25,7 @@
             };
             return result;
         }
-        function _renderSortedTable(goodsList, filter, sortBy) { 
+        function _renderSortedTable(goodsList, filter, whatHighliht, sortBy) { 
             var imageElement; 
             if (sortBy == 'name') {
                 imageElement = $('#sort-name-image');
@@ -35,11 +35,11 @@
             imageElement.toggleClass('lnr-chevron-up');
             imageElement.toggleClass('lnr-chevron-down');
        
-            _renderFilteredTable(goodsList, filter);
+            _renderFilteredTable(goodsList, filter, whatHighliht);
         }
         
-        function _renderFilteredTable(goodsList, filter) {  
-            tableBody.html(getFullHTML(goodsList, filter));
+        function _renderFilteredTable(goodsList, filter, whatHighliht) {  
+            tableBody.html(getFullHTML(goodsList, filter, whatHighliht));
         }
 
         return {

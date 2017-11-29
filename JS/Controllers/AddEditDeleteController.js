@@ -11,7 +11,7 @@
             goodsId,
             priceStored,
             isPriceStored,
-            priceTrigger = true,
+            priceToggle = true,
             isCursorIn = true,
             nameNotEntered = true;
              
@@ -65,8 +65,9 @@
             }
 
             function goodBye() { 
-                filter = $('#currentFilter').val(); 
-                view.TableView.renderFilteredTable(goodsList, filter);
+                var filter = $('#currentFilter').val(),
+                    filterX = $('#currentFilterX').val(); 
+                view.TableView.renderFilteredTable(goodsList, filter, filterX);
                 view.ModalView.hideModal();
                 $('#main').unbind('keydown');
             }
@@ -120,10 +121,10 @@
             }
 
             function priceComeOutHandler(e) { 
-                if (priceTrigger || isCursorIn) { 
+                if (priceToggle || isCursorIn) { 
                     return;
                 }
-                priceTrigger = true;
+                priceToggle = true;
     
                 var value = price$.val(),
                     errorInPrice = validator.getErrorInPriceIfAny(value);
@@ -142,10 +143,10 @@
             }
 
             function priceComeInHandler(e) {
-                if (!priceTrigger) {   
+                if (!priceToggle) {   
                     return;
                 }  
-                priceTrigger = false;
+                priceToggle = false;
                 if (isPriceStored) {
                     price$.val(priceStored);
                 }
@@ -173,7 +174,7 @@
                     priceStored = goodsList[goodsId].price;
                     isPriceStored = true;
                 }
-                priceTrigger = true; 
+                priceToggle = true; 
                 isCursorIn = false;
                 nameNotEntered = true;
                 name$.click(function () { nameNotEntered = false; name$.unbind('click')  });
